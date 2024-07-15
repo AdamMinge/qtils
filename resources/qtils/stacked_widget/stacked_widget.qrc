@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qtils/stacked_widget/">
+        <file>images/16x16/left_arrow.png</file>
+        <file>images/16x16/right_arrow.png</file>
+    </qresource>
+</RCC>

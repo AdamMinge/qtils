@@ -1,0 +1,47 @@
+# ----------------------------------------------------------------------- #
+# -------------------------- Set CMake version -------------------------- #
+# ----------------------------------------------------------------------- #
+cmake_minimum_required(VERSION 3.11)
+# ----------------------------------------------------------------------- #
+# -------------------------- Fetch dependencies ------------------------- #
+# ----------------------------------------------------------------------- #
+project(qt NONE)
+
+set(prefix_dir @QTILS_BUILD_DEPS_DIR@/qt)
+set(install_dir ${prefix_dir}/src/qt-install)
+
+if(WIN32)
+    set(configure_script ./configure.bat)
+else()
+    set(configure_script ./configure)
+endif()
+
+include(ExternalProject)
+ExternalProject_Add(
+    qt
+    URL                         
+        https://download.qt.io/official_releases/qt/6.6/6.6.0/single/qt-everywhere-src-6.6.0.tar.xz
+    URL_MD5                     
+        efc59647689c2548961a7312d075baf6
+    PREFIX                      
+        ${prefix_dir}
+    BUILD_IN_SOURCE             
+        TRUE
+    DOWNLOAD_EXTRACT_TIMESTAMP  
+        TRUE
+    CONFIGURE_COMMAND           
+        ${configure_script} 
+        -confirm-license -opensource 
+        -skip qtwebengine -skip qtwebview
+        -nomake examples -nomake tests 
+        -qpa xcb -prefix ${install_dir}
+    BUILD_COMMAND               
+        ${CMAKE_COMMAND} 
+        --build .
+    INSTALL_COMMAND             
+        ${CMAKE_COMMAND} 
+        --build . 
+        --target install
+    TEST_COMMAND                
+        "")
+# ----------------------------------------------------------------------- #
