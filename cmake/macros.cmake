@@ -103,6 +103,7 @@ function(qtils_export_modules)
   install(
     EXPORT qtilsConfigExport
     FILE ${targets_config_filename}
+    NAMESPACE qtils::
     DESTINATION ${config_package_location})
 
   install(
