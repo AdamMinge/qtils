@@ -8,18 +8,13 @@ cmake_minimum_required(VERSION 3.11)
 set(source_root ${QTILS_SOURCE_DIR}/src/qtils/serializer)
 set(include_root ${QTILS_SOURCE_DIR}/include/qtils/serializer)
 
-set(sources
-    ${source_root}/json_archive.cpp ${source_root}/base_serialization.cpp
-    ${source_root}/priv/json_archive_p.h)
+set(sources ${source_root}/json_archive.cpp
+            ${source_root}/priv/json_archive_p.h)
 
 set(includes
-    ${include_root}/export.h
-    ${include_root}/concept.h
-    ${include_root}/serializable.h
-    ${include_root}/archive_property.h
-    ${include_root}/archive.h
-    ${include_root}/json_archive.h
-    ${include_root}/base_serialization.h)
+    ${include_root}/export.h ${include_root}/serializable.h
+    ${include_root}/archive_property.h ${include_root}/archive.h
+    ${include_root}/json_archive.h ${include_root}/base_serialization.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #
