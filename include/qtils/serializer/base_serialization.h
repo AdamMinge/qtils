@@ -128,9 +128,8 @@ bool tryDeserializeVariantGadget(Archive& ar, QVariant& variant) {
 /* ---------------------------------- Base Type ----------------------------- */
 
 template <typename Archive, typename Type>
-bool trySerializeVariantBaseType(Archive& ar, const QVariant& variant,
-                                 QMetaType::Type meta_type) {
-  if (variant.metaType().id() == meta_type) {
+bool trySerializeVariantBaseType(Archive& ar, const QVariant& variant) {
+  if (variant.metaType().id() == qMetaTypeId<Type>()) {
     Type value = variant.value<Type>();
     ar << value;
     return true;
@@ -140,9 +139,8 @@ bool trySerializeVariantBaseType(Archive& ar, const QVariant& variant,
 }
 
 template <typename Archive, typename Type>
-bool tryDeserializeVariantBaseType(Archive& ar, QVariant& variant,
-                                   QMetaType::Type meta_type) {
-  if (variant.metaType().id() == meta_type) {
+bool tryDeserializeVariantBaseType(Archive& ar, QVariant& variant) {
+  if (variant.metaType().id() == qMetaTypeId<Type>()) {
     Type value;
     ar >> value;
     variant.setValue(std::move(value));
@@ -161,28 +159,28 @@ void serializeVariant(Archive& ar, const QVariant& variant) {
 
   static auto type_to_serializer = std::map<int, Serializer*>{};
   static auto serializers = std::to_array<Serializer>({
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QUrl>(a, v, QMetaType::QUrl); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QUuid>(a, v, QMetaType::QUuid); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QRectF>(a, v, QMetaType::QRectF); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QRect>(a, v, QMetaType::QRect); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QLineF>(a, v, QMetaType::QLineF); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QLine>(a, v, QMetaType::QLine); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QPointF>(a, v, QMetaType::QPointF); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QPoint>(a, v, QMetaType::QPoint); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QSizeF>(a, v, QMetaType::QSizeF); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QSize>(a, v, QMetaType::QSize); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QTime>(a, v, QMetaType::QTime); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QDate>(a, v, QMetaType::QDate); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QDateTime>(a, v, QMetaType::QDateTime); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QByteArray>(a, v, QMetaType::QByteArray); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QString>(a, v, QMetaType::QString); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, float>(a, v, QMetaType::Float); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, double>(a, v, QMetaType::Double); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, bool>(a, v, QMetaType::Bool); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, qulonglong>(a, v, QMetaType::ULongLong); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, qlonglong>(a, v, QMetaType::LongLong); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, uint>(a, v, QMetaType::UInt); },
-    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, int>(a, v, QMetaType::Int); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QUrl>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QUuid>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QRectF>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QRect>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QLineF>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QLine>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QPointF>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QPoint>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QSizeF>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QSize>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QTime>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QDate>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QDateTime>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QByteArray>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, QString>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, float>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, double>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, bool>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, qulonglong>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, qlonglong>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, uint>(a, v); },
+    [](auto& a, auto& v){ return trySerializeVariantBaseType<Archive, int>(a, v); },
     
     [](auto& a, auto& v){ return trySerializeVariantGadget(a, v); }});
   // clang-format on
@@ -207,28 +205,28 @@ void deserializeVariant(Archive& ar, QVariant& variant) {
 
   static auto type_to_deserializer = std::map<int, Deserializer*>{};
   static auto deserializers = std::to_array<Deserializer>({
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QUrl>(a, v, QMetaType::QUrl); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QUuid>(a, v, QMetaType::QUuid); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QRectF>(a, v, QMetaType::QRectF); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QRect>(a, v, QMetaType::QRect); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QLineF>(a, v, QMetaType::QLineF); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QLine>(a, v, QMetaType::QLine); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QPointF>(a, v, QMetaType::QPointF); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QPoint>(a, v, QMetaType::QPoint); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QSizeF>(a, v, QMetaType::QSizeF); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QSize>(a, v, QMetaType::QSize); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QTime>(a, v, QMetaType::QTime); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QDate>(a, v, QMetaType::QDate); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QDateTime>(a, v, QMetaType::QDateTime); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QByteArray>(a, v, QMetaType::QByteArray); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QString>(a, v, QMetaType::QString); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, float>(a, v, QMetaType::Float); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, double>(a, v, QMetaType::Double); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, bool>(a, v, QMetaType::Bool); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, qulonglong>(a, v, QMetaType::ULongLong); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, qlonglong>(a, v, QMetaType::LongLong); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, uint>(a, v, QMetaType::UInt); },
-    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, int>(a, v, QMetaType::Int); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QUrl>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QUuid>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QRectF>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QRect>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QLineF>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QLine>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QPointF>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QPoint>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QSizeF>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QSize>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QTime>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QDate>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QDateTime>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QByteArray>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, QString>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, float>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, double>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, bool>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, qulonglong>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, qlonglong>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, uint>(a, v); },
+    [](auto& a, auto& v){ return tryDeserializeVariantBaseType<Archive, int>(a, v); },
     
     [](auto& a, auto& v){ return tryDeserializeVariantGadget(a, v); }});
   // clang-format on

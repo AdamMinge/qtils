@@ -16,6 +16,13 @@ class SERIALIZER_API Serializable {
   virtual ~Serializable() = default;
 
   virtual void serialize(OArchive &archive) const = 0;
+};
+
+class SERIALIZER_API Deserializable {
+ public:
+  Deserializable() = default;
+  virtual ~Deserializable() = default;
+
   virtual void deserialize(IArchive &archive) = 0;
 };
 
