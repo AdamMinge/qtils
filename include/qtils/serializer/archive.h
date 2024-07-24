@@ -17,16 +17,10 @@ class IArchive;
 
 namespace details {
 
-/* ----------------------------------- IsBase ------------------------------- */
-
-template <typename T>
-concept IsBase = std::is_arithmetic_v<T> || std::is_same_v<T, QString>;
-
 /* -------------------------- HasSpecializedSerialize ----------------------- */
 
 template <typename Archive, typename Type>
 int serialize(Archive& ar, const Type& value) {
-  // static_assert(false, "trying serialize unsupported type");
   return 0;
 }
 
@@ -39,7 +33,6 @@ concept HasSpecializedSerialize = requires(OArchive& ar, const Type& v) {
 
 template <typename Archive, typename Type>
 int deserialize(Archive& ar, Type& value) {
-  // static_assert(false, "trying deserialize unsupported type");
   return 0;
 }
 
@@ -60,10 +53,12 @@ struct IteratorType<const T> {
   using type = typename T::const_iterator;
 };
 
-/* --------------------------------- IsString ------------------------------- */
+/* ----------------------------------- IsBase ------------------------------- */
 
 template <typename T>
-concept IsString = std::is_same_v<T, QString>;
+concept IsBase = std::is_arithmetic_v<T> || std::is_same_v<T, QUrl> ||
+    std::is_same_v<T, QUuid> || std::is_same_v<T, QString> ||
+    std::is_same_v<T, QByteArray>;
 
 /* -------------------------------- IsContainer ----------------------------- */
 
@@ -184,18 +179,21 @@ OArchive& OArchive::operator<<(const TYPE& value) {
 
 template <typename TYPE>
 void OArchive::serialize(const TYPE& value) {
-  if constexpr (details::HasSpecializedSerialize<TYPE>)
+  if constexpr (details::IsBase<TYPE>)
+    serializeBase(value);
+  else if constexpr (details::HasSpecializedSerialize<TYPE>)
     serializeCustom(value);
   else if constexpr (details::IsSerializable<TYPE>)
     serializeObject(value);
   else if constexpr (details::IsMappingContainer<TYPE>)
     serializeMappingContainer(value);
-  else if constexpr (details::IsContainer<TYPE> && !details::IsString<TYPE>)
+  else if constexpr (details::IsContainer<TYPE>)
     serializeContainer(value);
   else if constexpr (details::IsDereferenceable<TYPE>)
     serializeReference(value);
   else
-    serializeBase(value);
+    static_assert(!std::is_same_v<TYPE, TYPE>,
+                  "Unsupported Type to serialization");
 }
 
 template <details::HasSpecializedSerialize TYPE>
@@ -299,19 +297,21 @@ IArchive& IArchive::operator>>(TYPE& value) {
 
 template <typename TYPE>
 void IArchive::deserialize(TYPE& value) {
-  if constexpr (details::HasSpecializedDeserialize<TYPE>)
+  if constexpr (details::IsBase<TYPE>)
+    deserializeBase(value);
+  else if constexpr (details::HasSpecializedDeserialize<TYPE>)
     deserializeCustom(value);
   else if constexpr (details::IsSerializable<TYPE>)
     deserializeObject(value);
   else if constexpr (details::IsMappingContainer<TYPE>)
     deserializeMappingContainer(value);
-  else if constexpr (details::IsResizableContainer<TYPE> &&
-                     !details::IsString<TYPE>)
+  else if constexpr (details::IsResizableContainer<TYPE>)
     deserializeContainer(value);
   else if constexpr (details::IsDereferenceable<TYPE>)
     deserializeReference(value);
   else
-    deserializeBase(value);
+    static_assert(!std::is_same_v<TYPE, TYPE>,
+                  "Unsupported Type to deserialization");
 }
 
 template <details::HasSpecializedDeserialize TYPE>
