@@ -29,13 +29,19 @@ class STACKED_WIDGET_API QtStackedWidget : public QStackedWidget {
                         const QItemSelection &deselected);
   void modelChanged(QAbstractItemModel *model);
 
+  void itemInserted(const QModelIndex &parent, int first, int last);
+  void itemRemoved(const QModelIndex &parent, int first, int last);
+
  private:
   [[nodiscard]] static QList<QWidget *> getStackedWidgets(
-      const QAbstractItemModel *model);
+      const QAbstractItemModel *model, const QModelIndex &index);
 
  private:
   QAbstractItemView *m_view;
   QPointer<QWidget> m_default_widget;
+
+  QMetaObject::Connection m_item_inserted;
+  QMetaObject::Connection m_item_removed;
 };
 
 }  // namespace qtils

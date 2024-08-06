@@ -70,21 +70,47 @@ void QtStackedWidget::selectionChanged(const QItemSelection &selected,
 
 void QtStackedWidget::modelChanged(QAbstractItemModel *model) {
   for (auto i = 0; i < count(); ++i) removeWidget(widget(i));
+  disconnect(m_item_inserted);
+  disconnect(m_item_removed);
 
   addWidget(m_default_widget);
   if (model) {
-    auto widgets = getStackedWidgets(model);
-    for (auto widget : widgets) addWidget(widget);
+    itemInserted(QModelIndex{}, 0, model->rowCount() - 1);
+
+    m_item_inserted = connect(model, &QAbstractItemModel::rowsInserted, this,
+                              &QtStackedWidget::itemInserted);
+    m_item_removed = connect(model, &QAbstractItemModel::rowsAboutToBeRemoved,
+                             this, &QtStackedWidget::itemRemoved);
+  }
+}
+
+void QtStackedWidget::itemInserted(const QModelIndex &parent, int first,
+                                   int last) {
+  auto model = m_view->model();
+  for (auto i = first; i <= last; ++i) {
+    const auto widgets = getStackedWidgets(model, model->index(i, 0, parent));
+    for (auto widget : widgets) {
+      addWidget(widget);
+    }
+  }
+}
+
+void QtStackedWidget::itemRemoved(const QModelIndex &parent, int first,
+                                  int last) {
+  auto model = m_view->model();
+  for (auto i = first; i <= last; ++i) {
+    const auto widgets = getStackedWidgets(model, model->index(i, 0, parent));
+    for (auto widget : widgets) {
+      removeWidget(widget);
+    }
   }
 }
 
 QList<QWidget *> QtStackedWidget::getStackedWidgets(
-    const QAbstractItemModel *model) {
+    const QAbstractItemModel *model, const QModelIndex &index) {
   auto stacked_widgets = QList<QWidget *>{};
   auto indexes_to_process = std::stack<QModelIndex>{};
-
-  for (auto row = 0; row < model->rowCount(QModelIndex{}); ++row)
-    indexes_to_process.push(model->index(row, 0, QModelIndex{}));
+  indexes_to_process.push(index);
 
   while (!indexes_to_process.empty()) {
     auto current_index = indexes_to_process.top();
