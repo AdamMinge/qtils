@@ -12,7 +12,7 @@ namespace qtils {
 QtFileBrowserLineEdit::QtFileBrowserLineEdit(QWidget *parent)
     : QLineEdit(parent) {
   auto browser_action =
-      addAction(QIcon(":/utils/line_edit/images/32x32/file_browser.png"),
+      addAction(QIcon(":/qtils/line_edit/images/32x32/file_browser.png"),
                 QLineEdit::TrailingPosition);
 
   connect(browser_action, &QAction::triggered, this,
