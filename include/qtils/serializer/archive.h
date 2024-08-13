@@ -163,11 +163,9 @@ class SERIALIZER_API OArchive {
 
 template <typename TYPE>
 OArchive& OArchive::operator<<(const ArchiveProperty<TYPE>& property) {
-  qDebug() << "start = " << property.getName();
   saveStart(property.getName());
   (*this) << property.getConstValue();
   saveEnd(property.getName());
-  qDebug() << "end = " << property.getName();
 
   return *this;
 }
@@ -200,26 +198,21 @@ void OArchive::serialize(const TYPE& value) {
 
 template <details::HasSpecializedSerialize TYPE>
 void OArchive::serializeCustom(const TYPE& object) {
-  qDebug() << "serializeCustom";
   qtils::serialize(*this, object);
 }
 
 template <details::IsDereferenceable TYPE>
 void OArchive::serializeReference(const TYPE& object) {
-  qDebug() << "serializeReference";
   serialize(*object);
 }
 
 template <details::IsSerializable TYPE>
 void OArchive::serializeObject(const TYPE& object) {
-  qDebug() << "serializeObject";
   object.serialize(*this);
 }
 
 template <details::IsContainer TYPE>
 void OArchive::serializeContainer(const TYPE& container) {
-  qDebug() << "serializeContainer";
-
   auto index = 0;
   for (const auto& value : container) {
     arrayStart(index);
@@ -232,8 +225,6 @@ void OArchive::serializeContainer(const TYPE& container) {
 
 template <details::IsMappingContainer TYPE>
 void OArchive::serializeMappingContainer(const TYPE& container) {
-  qDebug() << "serializeMappingContainer";
-
   for (auto it = container.begin(); it != container.end(); ++it) {
     const auto& key = it.key();
     const auto& value = it.value();
@@ -243,8 +234,6 @@ void OArchive::serializeMappingContainer(const TYPE& container) {
 
 template <typename TYPE>
 void OArchive::serializeBase(const TYPE& value) {
-  qDebug() << "serializeBase";
-
   save(QVariant::fromValue<TYPE>(value));
 }
 
