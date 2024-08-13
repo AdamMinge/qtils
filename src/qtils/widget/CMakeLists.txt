@@ -9,11 +9,12 @@ set(source_root ${QTILS_SOURCE_DIR}/src/qtils/widget)
 set(include_root ${QTILS_SOURCE_DIR}/include/qtils/widget)
 set(uis_root ${QTILS_SOURCE_DIR}/uis/qtils/widget)
 
-set(sources ${source_root}/name_and_path_filler.cpp
-            ${source_root}/shortcut_selector.cpp)
+set(sources
+    ${source_root}/name_and_path_filler.cpp
+    ${source_root}/shortcut_selector.cpp ${source_root}/color_picker.cpp)
 
 set(includes ${include_root}/export.h ${include_root}/name_and_path_filler.h
-             ${include_root}/shortcut_selector.h)
+             ${include_root}/shortcut_selector.h ${include_root}/color_picker.h)
 
 set(uis ${uis_root}/name_and_path_filler.ui)
 # ----------------------------------------------------------------------- #
