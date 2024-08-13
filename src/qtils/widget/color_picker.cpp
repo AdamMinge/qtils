@@ -95,7 +95,7 @@ QPixmap QtColorPicker::brushValuePixmap(const QBrush &b) const {
 }
 
 QString QtColorPicker::colorValueText(const QColor &c) const {
-  return tr("QtPropertyBrowserUtils", "[%1, %2, %3] (%4)")
+  return tr("[%1, %2, %3] (%4)")
       .arg(c.red())
       .arg(c.green())
       .arg(c.blue())
