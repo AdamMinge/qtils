@@ -93,9 +93,9 @@ void QtStackedWidgetLabel::modelChanged(QAbstractItemModel *model) {
 void QtStackedWidgetLabel::initUi() { m_ui->setupUi(this); }
 
 void QtStackedWidgetLabel::initConnections() {
-  connect(m_ui->m_prev_button, &QToolButton::pressed, this,
+  connect(m_ui->m_prev_button, &QToolButton::clicked, this,
           [this]() { moveHistory(-1); });
-  connect(m_ui->m_next_button, &QToolButton::pressed, this,
+  connect(m_ui->m_next_button, &QToolButton::clicked, this,
           [this]() { moveHistory(1); });
 }
 
