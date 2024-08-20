@@ -1,7 +1,7 @@
 About Qtils
 -------------------------------------------------------------------------------
 
-Qtils is a set of common solutions used by pillar and egnite.
+Qtils is a set of common solutions used by pillar.
 
 Available Packages
 -------------------------------------------------------------------------------
