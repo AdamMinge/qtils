@@ -1,0 +1,10 @@
+set(FIND_qtils_DEPENDENCIES_NOTFOUND)
+
+find_package(Qt6 COMPONENTS Core Widgets)
+
+if(FIND_qtils_DEPENDENCIES_NOTFOUND)
+  set(FIND_aegis_ERROR
+      "qtils found but some of its dependencies are missing (${FIND_qtils_DEPENDENCIES_NOTFOUND})"
+  )
+  set(qtils_FOUND FALSE)
+endif()
