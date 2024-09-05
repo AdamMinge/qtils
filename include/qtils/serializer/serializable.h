@@ -10,18 +10,22 @@ namespace qtils {
 class OArchive;
 class IArchive;
 
+/* ------------------------------- Serializable ----------------------------- */
+
 class SERIALIZER_API Serializable {
  public:
-  Serializable() = default;
-  virtual ~Serializable() = default;
+  Serializable();
+  virtual ~Serializable();
 
   virtual void serialize(OArchive &archive) const = 0;
 };
 
+/* ------------------------------ Deserializable ---------------------------- */
+
 class SERIALIZER_API Deserializable {
  public:
-  Deserializable() = default;
-  virtual ~Deserializable() = default;
+  Deserializable();
+  virtual ~Deserializable();
 
   virtual void deserialize(IArchive &archive) = 0;
 };

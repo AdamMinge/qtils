@@ -12,7 +12,7 @@
 namespace qtils {
 
 template <typename TYPE>
-class DIALOG_API QtDialogWithUrlLinks : public QDialog {
+class QtDialogWithUrlLinks : public QDialog {
  public:
   static void show(const QUrl &url = QUrl{}, QWidget *parent = nullptr);
   static void exec(const QUrl &url = QUrl{}, QWidget *parent = nullptr);

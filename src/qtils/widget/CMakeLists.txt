@@ -39,7 +39,8 @@ qtils_add_module(
   ${includes}
   ${uis}
   DEPENDS
-  Qt6::Widgets)
+  Qt6::Widgets
+  qtils::line_edit)
 
 target_include_directories(
   widget

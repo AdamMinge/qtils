@@ -11,7 +11,7 @@
 
 namespace qtils {
 
-class QtConditionalBoldDelegate : public QStyledItemDelegate {
+class DELEGATE_API QtConditionalBoldDelegate : public QStyledItemDelegate {
  public:
   using Condition = std::function<bool(const QModelIndex &)>;
 

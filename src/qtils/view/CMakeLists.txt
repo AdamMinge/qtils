@@ -8,8 +8,6 @@ cmake_minimum_required(VERSION 3.11)
 set(source_root ${QTILS_SOURCE_DIR}/src/qtils/view)
 set(include_root ${QTILS_SOURCE_DIR}/include/qtils/view)
 
-set(sources)
-
 set(includes
     ${include_root}/export.h ${include_root}/concept.h
     ${include_root}/unselectable_view.h
@@ -27,11 +25,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 # ----------------------------------------------------------------------- #
 # -------------------------- Create qtils shared lib ---------------------#
 # ----------------------------------------------------------------------- #
-qtils_add_module(view SOURCES ${sources} ${includes} DEPENDS Qt6::Widgets)
+qtils_add_headers_only_module(view SOURCES ${includes} DEPENDS Qt6::Widgets)
 
-target_include_directories(
-  view
-  PUBLIC $<BUILD_INTERFACE:${QTILS_SOURCE_DIR}/include/>
-  INTERFACE $<INSTALL_INTERFACE:include>
-  PRIVATE ${QTILS_SOURCE_DIR}/src/)
+target_include_directories(view INTERFACE $<INSTALL_INTERFACE:include>)
 # ----------------------------------------------------------------------- #

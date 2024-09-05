@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.11)
 set(source_root ${QTILS_SOURCE_DIR}/src/qtils/serializer)
 set(include_root ${QTILS_SOURCE_DIR}/include/qtils/serializer)
 
-set(sources ${source_root}/json_archive.cpp
+set(sources ${source_root}/json_archive.cpp ${source_root}/serializable.cpp
             ${source_root}/priv/json_archive_p.h)
 
 set(includes

@@ -9,7 +9,7 @@
 
 namespace qtils {
 
-class QtIconCheckDelegate : public QItemDelegate {
+class DELEGATE_API QtIconCheckDelegate : public QItemDelegate {
  public:
   enum IconType { VisibilityIcon, LockedIcon };
 

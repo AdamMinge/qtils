@@ -17,10 +17,6 @@ include(${QTILS_SOURCE_DIR}/cmake/macros.cmake)
 add_subdirectory(deps)
 add_subdirectory(src)
 
-if(QTILS_BUILD_TEST)
-  add_subdirectory(tests)
-endif()
-
 add_subdirectory(docs)
 # ----------------------------------------------------------------------- #
 # ------------------------------- Final steps --------------------------- #

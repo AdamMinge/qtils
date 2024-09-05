@@ -11,7 +11,7 @@
 namespace qtils {
 
 template <typename TYPE>
-class SERIALIZER_API ArchiveProperty {
+class ArchiveProperty {
  public:
   explicit ArchiveProperty(QString name, TYPE& value);
   ~ArchiveProperty();

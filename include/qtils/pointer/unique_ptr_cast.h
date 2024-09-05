@@ -10,7 +10,7 @@
 namespace qtils {
 
 template <typename TO, typename FROM>
-std::unique_ptr<TO> POINTER_API cast_unique_ptr(std::unique_ptr<FROM> &&from) {
+std::unique_ptr<TO> cast_unique_ptr(std::unique_ptr<FROM> &&from) {
   return std::unique_ptr<TO>(dynamic_cast<TO *>(from.release()));
 }
 
