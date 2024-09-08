@@ -48,7 +48,7 @@ class WIDGET_API QtNameAndPathFiller : public QWidget {
  Q_SIGNALS:
   void nameChanged(const QString &name);  // clazy:exclude=overloaded-signal
   void pathChanged(const QString &name);  // clazy:exclude=overloaded-signal
-  bool validStateChanged(bool isValid);
+  void validStateChanged(bool isValid);
 
  protected:
   void changeEvent(QEvent *event) override;
