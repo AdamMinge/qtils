@@ -10,7 +10,8 @@ set(include_root ${QTILS_SOURCE_DIR}/include/qtils/action)
 
 set(sources ${source_root}/action.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/action.h)
+set(includes ${include_root}/../config.h ${include_root}/export.h
+             ${include_root}/action.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #

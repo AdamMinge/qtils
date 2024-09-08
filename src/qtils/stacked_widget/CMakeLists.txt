@@ -16,9 +16,12 @@ set(sources
     ${source_root}/stacked_widget_label.cpp ${source_root}/stacked_widget.cpp)
 
 set(includes
-    ${include_root}/export.h ${include_root}/stacked_widget_tree_model.h
+    ${include_root}/../config.h
+    ${include_root}/export.h
+    ${include_root}/stacked_widget_tree_model.h
     ${include_root}/stacked_widget_tree_delegate.h
-    ${include_root}/stacked_widget_label.h ${include_root}/stacked_widget.h)
+    ${include_root}/stacked_widget_label.h
+    ${include_root}/stacked_widget.h)
 
 set(uis ${uis_root}/stacked_widget_label.ui)
 

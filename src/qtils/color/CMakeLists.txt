@@ -10,7 +10,8 @@ set(include_root ${QTILS_SOURCE_DIR}/include/qtils/color)
 
 set(sources ${source_root}/color.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/color.h)
+set(includes ${include_root}/../config.h ${include_root}/export.h
+             ${include_root}/color.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #

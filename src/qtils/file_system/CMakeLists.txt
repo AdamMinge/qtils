@@ -11,8 +11,10 @@ set(include_root ${QTILS_SOURCE_DIR}/include/qtils/file_system)
 set(sources ${source_root}/file_system_watcher.cpp
             ${source_root}/file_system_proxy_model.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/file_system_watcher.h
-             ${include_root}/file_system_proxy_model.h)
+set(includes
+    ${include_root}/../config.h ${include_root}/export.h
+    ${include_root}/file_system_watcher.h
+    ${include_root}/file_system_proxy_model.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration -------------------#
 # ----------------------------------------------------------------------- #

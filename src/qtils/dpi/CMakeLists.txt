@@ -10,7 +10,8 @@ set(include_root ${QTILS_SOURCE_DIR}/include/qtils/dpi)
 
 set(sources ${source_root}/dpi.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/dpi.h)
+set(includes ${include_root}/../config.h ${include_root}/export.h
+             ${include_root}/dpi.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #

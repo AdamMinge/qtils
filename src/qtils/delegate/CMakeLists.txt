@@ -11,8 +11,10 @@ set(include_root ${QTILS_SOURCE_DIR}/include/qtils/delegate)
 set(sources ${source_root}/icon_check_delegate.cpp
             ${source_root}/conditional_bold_delegate.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/icon_check_delegate.h
-             ${include_root}/conditional_bold_delegate.h)
+set(includes
+    ${include_root}/../config.h ${include_root}/export.h
+    ${include_root}/icon_check_delegate.h
+    ${include_root}/conditional_bold_delegate.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #

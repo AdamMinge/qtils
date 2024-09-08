@@ -20,6 +20,7 @@ set(sources
     ${source_root}/priv/property_browser_utils_p.h)
 
 set(includes
+    ${include_root}/../config.h
     ${include_root}/export.h
     ${include_root}/button_property_browser.h
     ${include_root}/editor_factory.h

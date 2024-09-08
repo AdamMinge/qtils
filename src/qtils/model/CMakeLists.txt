@@ -11,8 +11,10 @@ set(include_root ${QTILS_SOURCE_DIR}/include/qtils/model)
 set(sources ${source_root}/leaf_filter_proxy_model.cpp
             ${source_root}/reverse_proxy_model.cpp ${source_root}/cast.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/leaf_filter_proxy_model.h
-             ${include_root}/reverse_proxy_model.h ${include_root}/cast.h)
+set(includes
+    ${include_root}/../config.h ${include_root}/export.h
+    ${include_root}/leaf_filter_proxy_model.h
+    ${include_root}/reverse_proxy_model.h ${include_root}/cast.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #

@@ -2,13 +2,13 @@
 #define QTILS_DIALOG_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(DIALOG_EXPORTS)
-#define DIALOG_API Q_DECL_EXPORT
+#define DIALOG_API QTILS_API_EXPORT
 #else
-#define DIALOG_API Q_DECL_IMPORT
+#define DIALOG_API QTILS_API_IMPORT
 #endif
 
 #endif  // QTILS_DIALOG_EXPORT_H

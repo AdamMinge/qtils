@@ -2,13 +2,13 @@
 #define UTILS_POINTER_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(POINTER_EXPORTS)
-#define POINTER_API Q_DECL_EXPORT
+#define POINTER_API QTILS_API_EXPORT
 #else
-#define POINTER_API Q_DECL_IMPORT
+#define POINTER_API QTILS_API_IMPORT
 #endif
 
 #endif  // UTILS_POINTER_EXPORT_H

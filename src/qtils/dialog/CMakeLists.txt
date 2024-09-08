@@ -12,7 +12,9 @@ set(sources ${source_root}/dialog_with_toggle_view.cpp
             ${source_root}/extended_file_dialog.cpp)
 
 set(includes
-    ${include_root}/export.h ${include_root}/dialog_with_url_links.h
+    ${include_root}/../config.h
+    ${include_root}/export.h
+    ${include_root}/dialog_with_url_links.h
     ${include_root}/dialog_with_toggle_view.h
     ${include_root}/extended_file_dialog.h)
 # ----------------------------------------------------------------------- #

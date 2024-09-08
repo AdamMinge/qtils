@@ -2,13 +2,13 @@
 #define QTILS_COLOR_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(COLOR_EXPORTS)
-#define COLOR_API Q_DECL_EXPORT
+#define COLOR_API QTILS_API_EXPORT
 #else
-#define COLOR_API Q_DECL_IMPORT
+#define COLOR_API QTILS_API_IMPORT
 #endif
 
 #endif  // QTILS_COLOR_EXPORT_H

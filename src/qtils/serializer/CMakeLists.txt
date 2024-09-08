@@ -12,9 +12,13 @@ set(sources ${source_root}/json_archive.cpp ${source_root}/serializable.cpp
             ${source_root}/priv/json_archive_p.h)
 
 set(includes
-    ${include_root}/export.h ${include_root}/serializable.h
-    ${include_root}/archive_property.h ${include_root}/archive.h
-    ${include_root}/json_archive.h ${include_root}/base_serialization.h)
+    ${include_root}/../config.h
+    ${include_root}/export.h
+    ${include_root}/serializable.h
+    ${include_root}/archive_property.h
+    ${include_root}/archive.h
+    ${include_root}/json_archive.h
+    ${include_root}/base_serialization.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #

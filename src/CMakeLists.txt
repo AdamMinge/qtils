@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.11)
 # ----------------------------------------------------------------------- #
 # ---------------------------- Generate headers ------------------------- #
 # ----------------------------------------------------------------------- #
-set(include_root ${QTILS_SOURCE_DIR}/include)
+set(include_root ${QTILS_SOURCE_DIR}/include/qtils)
 configure_file(${include_root}/config.h.in ${include_root}/config.h)
 # ----------------------------------------------------------------------- #
 # --------------------------- Add subdirectories ------------------------ #

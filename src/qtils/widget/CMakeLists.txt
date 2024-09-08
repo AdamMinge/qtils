@@ -13,8 +13,10 @@ set(sources
     ${source_root}/name_and_path_filler.cpp
     ${source_root}/shortcut_selector.cpp ${source_root}/color_picker.cpp)
 
-set(includes ${include_root}/export.h ${include_root}/name_and_path_filler.h
-             ${include_root}/shortcut_selector.h ${include_root}/color_picker.h)
+set(includes
+    ${include_root}/../config.h ${include_root}/export.h
+    ${include_root}/name_and_path_filler.h ${include_root}/shortcut_selector.h
+    ${include_root}/color_picker.h)
 
 set(uis ${uis_root}/name_and_path_filler.ui)
 # ----------------------------------------------------------------------- #

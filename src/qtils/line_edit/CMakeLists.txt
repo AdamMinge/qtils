@@ -15,7 +15,9 @@ set(sources
     ${source_root}/dir_browser_line_edit.cpp)
 
 set(includes
-    ${include_root}/export.h ${include_root}/line_edit_with_history.h
+    ${include_root}/../config.h
+    ${include_root}/export.h
+    ${include_root}/line_edit_with_history.h
     ${include_root}/file_browser_line_edit.h
     ${include_root}/dir_browser_line_edit.h)
 

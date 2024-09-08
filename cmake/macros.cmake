@@ -24,9 +24,6 @@ macro(_qtils_prepare_module_target target)
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib)
 
-  if(NOT BUILD_SHARED_LIBS)
-    target_compile_definitions(${target} PUBLIC "QTILS_STATIC")
-  endif()
 endmacro()
 # ----------------------------------------------------------------------- #
 # ---------- Define a macro that helps add headers only module ---------- #
@@ -49,6 +46,10 @@ macro(qtils_add_headers_only_module target)
   endif()
 
   _qtils_prepare_module_target(${target})
+
+  if(NOT BUILD_SHARED_LIBS)
+    target_compile_definitions(${target} INTERFACE "QTILS_STATIC")
+  endif()
 
 endmacro()
 # ----------------------------------------------------------------------- #
@@ -89,6 +90,10 @@ macro(qtils_add_module target)
   endif()
 
   _qtils_prepare_module_target(${target})
+
+  if(NOT BUILD_SHARED_LIBS)
+    target_compile_definitions(${target} PUBLIC "QTILS_STATIC")
+  endif()
 
 endmacro()
 # ----------------------------------------------------------------------- #

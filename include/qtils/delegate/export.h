@@ -2,13 +2,13 @@
 #define QTILS_DELEGATE_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(DELEGATE_EXPORTS)
-#define DELEGATE_API Q_DECL_EXPORT
+#define DELEGATE_API QTILS_API_EXPORT
 #else
-#define DELEGATE_API Q_DECL_IMPORT
+#define DELEGATE_API QTILS_API_IMPORT
 #endif
 
 #endif  // QTILS_DELEGATE_EXPORT_H

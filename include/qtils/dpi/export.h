@@ -2,13 +2,13 @@
 #define QTILS_DPI_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(DPI_EXPORTS)
-#define DPI_API Q_DECL_EXPORT
+#define DPI_API QTILS_API_EXPORT
 #else
-#define DPI_API Q_DECL_IMPORT
+#define DPI_API QTILS_API_IMPORT
 #endif
 
 #endif  // QTILS_DPI_EXPORT_H

@@ -2,13 +2,13 @@
 #define UTILS_VIEW_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(VIEW_EXPORTS)
-#define VIEW_API Q_DECL_EXPORT
+#define VIEW_API QTILS_API_EXPORT
 #else
-#define VIEW_API Q_DECL_IMPORT
+#define VIEW_API QTILS_API_IMPORT
 #endif
 
 #endif  // UTILS_VIEW_EXPORT_H

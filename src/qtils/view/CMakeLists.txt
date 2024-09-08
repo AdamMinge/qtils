@@ -9,8 +9,8 @@ set(source_root ${QTILS_SOURCE_DIR}/src/qtils/view)
 set(include_root ${QTILS_SOURCE_DIR}/include/qtils/view)
 
 set(includes
-    ${include_root}/export.h ${include_root}/concept.h
-    ${include_root}/unselectable_view.h
+    ${include_root}/../config.h ${include_root}/export.h
+    ${include_root}/concept.h ${include_root}/unselectable_view.h
     ${include_root}/mouse_over_selectable_view.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration -------------------#

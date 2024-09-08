@@ -2,13 +2,13 @@
 #define UTILS_SERIALIZER_EXPORT_H
 
 /* ------------------------------------ Qt ---------------------------------- */
-#include <QtCore/QtGlobal>
+#include "qtils/config.h"
 /* -------------------------------------------------------------------------- */
 
 #if defined(SERIALIZER_EXPORTS)
-#define SERIALIZER_API Q_DECL_EXPORT
+#define SERIALIZER_API QTILS_API_EXPORT
 #else
-#define SERIALIZER_API Q_DECL_IMPORT
+#define SERIALIZER_API QTILS_API_IMPORT
 #endif
 
 #endif  // UTILS_SERIALIZER_EXPORT_H

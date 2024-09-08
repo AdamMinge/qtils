@@ -8,8 +8,8 @@ cmake_minimum_required(VERSION 3.11)
 set(source_root ${QTILS_SOURCE_DIR}/src/qtils/container)
 set(include_root ${QTILS_SOURCE_DIR}/include/qtils/container)
 
-set(includes ${include_root}/export.h ${include_root}/hash.h
-             ${include_root}/map.h)
+set(includes ${include_root}/../config.h ${include_root}/export.h
+             ${include_root}/hash.h ${include_root}/map.h)
 # ----------------------------------------------------------------------- #
 # ------------------------- Qt libraries configuration ------------------ #
 # ----------------------------------------------------------------------- #
